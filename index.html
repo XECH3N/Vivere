@@ -3,114 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Véracité - Luxury Eyewear</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <title>Véracité</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Global Styles */
         body {
-            font-family: 'Playfair Display', serif;
-            color: #333333;
+            font-family: 'Libre Baskerville', serif;
             background-color: #E6E6FA;
             margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
         }
 
-        /* Navigation */
-        nav {
-            background-color: #333333;
-            padding: 15px 30px;
-            text-align: center;
+        /* Navbar */
+        header {
             position: fixed;
-            width: 100%;
             top: 0;
-            left: 0;
-            z-index: 1000;
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.7);
+            color: #FFF;
+            padding: 20px 10%;
+            text-align: center;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s ease, padding 0.3s ease;
         }
 
-        nav a {
-            color: #E6E6FA;
+        header.scrolled {
+            background-color: #333333;
+            padding: 15px 10%;
+        }
+
+        nav {
+            margin-top: 60px;
+        }
+
+        a {
             text-decoration: none;
-            padding: 10px 20px;
-            display: inline-block;
-            font-weight: 600;
+            color: #A4863D;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        nav .logo {
-            font-size: 1.8rem;
-            font-weight: 600;
+        a:hover {
+            color: #FFF;
         }
 
         /* Hero Section */
         .hero {
-            background-image: url('https://via.placeholder.com/1500x1000');
+            background-image: url('https://via.placeholder.com/1920x1080');
             background-size: cover;
             background-position: center;
-            padding: 100px 20px;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FFF;
             text-align: center;
-            color: white;
             transition: opacity 0.5s ease;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            font-weight: 600;
+            font-size: 4em;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 5px;
+            text-transform: uppercase;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-
-        /* Product Grid */
-        .product-grid {
+        /* Products Section */
+        .products-section {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            padding: 40px;
-            justify-content: center;
-            transition: opacity 0.5s ease;
+            margin: 50px auto;
+            padding: 0 10%;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
 
         .product {
-            background-color: #fff;
-            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            transition: transform 0.3s ease;
+            background-color: #FFF;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product:hover {
             transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
 
         .product img {
             width: 100%;
             height: auto;
+            transition: transform 0.3s ease;
         }
 
-        .product h3 {
-            font-size: 1.2rem;
+        .product:hover img {
+            transform: scale(1.1);
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #A4863D;
             margin: 10px 0;
         }
 
-        .product .price {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #A4863D;
-        }
-
-        .product .add-to-cart {
-            background-color: #333333;
-            color: #E6E6FA;
-            padding: 10px 20px;
+        .add-to-cart {
+            background-color: #A4863D;
+            color: #FFF;
+            padding: 10px;
             border: none;
             cursor: pointer;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
+            font-weight: 500;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .product .add-to-cart:hover {
-            background-color: #A4863D;
+        .add-to-cart:hover {
+            background-color: #333333;
+            transform: translateY(-5px);
+        }
+
+        /* About Us and Contact Us Sections */
+        .about-us, .contact-us {
+            text-align: center;
+            margin: 50px auto;
+            padding: 0 15%;
+        }
+
+        .about-us p, .contact-us p {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #333333;
+            color: #FFF;
+            padding: 30px;
+        }
+
+        footer a {
+            color: #A4863D;
         }
 
         /* Cart Modal */
@@ -121,70 +159,69 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1001;
+            background-color: rgba(0, 0, 0, 0.7);
             justify-content: center;
             align-items: center;
+            z-index: 20;
         }
 
         .cart-modal-content {
-            background-color: #fff;
-            padding: 40px;
+            background-color: #FFF;
+            padding: 30px;
             border-radius: 10px;
-            width: 300px;
             text-align: center;
         }
 
-        .cart-modal-content h2 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .cart-modal-content #cartItems {
-            margin-bottom: 20px;
-        }
-
-        .cart-modal-content #checkoutBtn {
+        #cartIcon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background-color: #A4863D;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
+            color: #FFF;
+            padding: 10px 20px;
+            border-radius: 50%;
             cursor: pointer;
-            font-weight: 600;
         }
 
-        .cart-modal-content #closeCartBtn {
-            background-color: #333333;
-            color: #E6E6FA;
-            padding: 15px 30px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 10px;
+        #cartCount {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.2em;
+            color: #FFF;
+            background-color: red;
+            border-radius: 50%;
+            padding: 5px;
         }
 
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
+        /* Scroll Effects */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="logo">Véracité</a>
-        <a href="#" id="cartIcon">Cart (<span id="cartCount">0</span>)</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero">
+    <header id="header">
         <h1>Véracité</h1>
-        <p>Luxury Eyewear for the Effortless Lifestyle</p>
-    </div>
+        <nav>
+            <a href="#shop">Shop</a>
+            <a href="#about-us">About Us</a>
+            <a href="#contact-us">Contact Us</a>
+        </nav>
+    </header>
 
-    <!-- Product Grid (Placeholders) -->
-    <div class="product-grid">
+    <section class="hero">
+        <h1>Welcome to Véracité</h1>
+    </section>
+
+    <!-- Shop Section -->
+    <div id="shop" class="products-section fade-in">
         <div class="product">
             <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 1">
             <h3>Luxury Sunglasses 1</h3>
@@ -194,101 +231,117 @@
         <div class="product">
             <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 2">
             <h3>Luxury Sunglasses 2</h3>
-            <p class="price">$450</p>
-            <button class="add-to-cart" data-price="450">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 3">
-            <h3>Luxury Sunglasses 3</h3>
-            <p class="price">$550</p>
-            <button class="add-to-cart" data-price="550">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 4">
-            <h3>Luxury Sunglasses 4</h3>
             <p class="price">$600</p>
             <button class="add-to-cart" data-price="600">Add to Cart</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 5">
-            <h3>Luxury Sunglasses 5</h3>
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 3">
+            <h3>Luxury Sunglasses 3</h3>
+            <p class="price">$650</p>
+            <button class="add-to-cart" data-price="650">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 4">
+            <h3>Luxury Sunglasses 4</h3>
             <p class="price">$700</p>
             <button class="add-to-cart" data-price="700">Add to Cart</button>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 6">
-            <h3>Luxury Sunglasses 6</h3>
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 5">
+            <h3>Luxury Sunglasses 5</h3>
             <p class="price">$750</p>
             <button class="add-to-cart" data-price="750">Add to Cart</button>
         </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 6">
+            <h3>Luxury Sunglasses 6</h3>
+            <p class="price">$800</p>
+            <button class="add-to-cart" data-price="800">Add to Cart</button>
+        </div>
     </div>
 
-    <!-- Shopping Cart Modal -->
-    <div id="cartModal" class="cart-modal">
-        <div class="cart-modal-content">
-            <h2>Your Cart</h2>
-            <div id="cartItems"></div>
-            <p>Total: $<span id="cartTotal">0</span></p>
-            <p><strong>Shipping:</strong> Free Worldwide Shipping</p>
-            <button id="checkoutBtn">Checkout</button>
-            <button id="closeCartBtn">Close</button>
-        </div>
+    <!-- About Us Section -->
+    <div id="about-us" class="about-us fade-in">
+        <h2>About Us</h2>
+        <p>Véracité is a luxury eyewear brand that blends timeless elegance with cutting-edge style. Our sunglasses are designed for individuals who appreciate the finer things in life—craftsmanship, sophistication, and exclusivity. Each pair is meticulously crafted with the highest quality materials, ensuring both comfort and style. Véracité isn't just a brand; it's a way of life. A life that values beauty, creativity, and the pursuit of excellence.</p>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div id="contact-us" class="contact-us fade-in">
+        <h2>Contact Us</h2>
+        <p>For inquiries, please email us at <strong>info@veracite.com</strong> or call <strong>(123) 456-7890</strong>.</p>
     </div>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Véracité. All rights reserved.</p>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
     </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <h3>Your Cart</h3>
+            <p id="cartContents">No items in cart</p>
+            <button id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Cart Icon -->
+    <div id="cartIcon">
+        Cart <span id="cartCount">0</span>
+    </div>
 
     <script>
         let cart = [];
-        let cartCount = 0;
-        let cartTotal = 0;
-
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        const cartIcon = document.getElementById('cartIcon');
-        const cartCountElement = document.getElementById('cartCount');
         const cartModal = document.getElementById('cartModal');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotalElement = document.getElementById('cartTotal');
-        const checkoutBtn = document.getElementById('checkoutBtn');
-        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCount = document.getElementById('cartCount');
+        const addToCartBtns = document.querySelectorAll('.add-to-cart');
+        const cartContents = document.getElementById('cartContents');
 
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const price = parseInt(event.target.getAttribute('data-price'));
-                const productName = event.target.parentElement.querySelector('h3').innerText;
-                cart.push({ name: productName, price: price });
-                cartCount++;
-                cartTotal += price;
-                updateCartUI();
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const productName = e.target.previousElementSibling.previousElementSibling.textContent;
+                const price = parseInt(e.target.dataset.price);
+                cart.push({ productName, price });
+                updateCart();
             });
         });
 
         cartIcon.addEventListener('click', () => {
             cartModal.style.display = 'flex';
-            updateCartModal();
         });
 
-        closeCartBtn.addEventListener('click', () => {
+        document.getElementById('checkoutBtn').addEventListener('click', () => {
+            alert('Proceeding to checkout');
+            cart = [];
+            updateCart();
             cartModal.style.display = 'none';
         });
 
-        function updateCartUI() {
-            cartCountElement.textContent = cartCount;
+        function updateCart() {
+            const cartSummary = cart.map(item => `<p>${item.productName} - $${item.price}</p>`).join('');
+            cartContents.innerHTML = cartSummary || 'No items in cart';
+            cartCount.textContent = cart.length;
         }
 
-        function updateCartModal() {
-            cartItems.innerHTML = '';
-            cart.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.textContent = `${item.name} - $${item.price}`;
-                cartItems.appendChild(itemDiv);
+        // Scroll Effect Trigger
+        window.addEventListener('scroll', () => {
+            const fadeInElements = document.querySelectorAll('.fade-in');
+            fadeInElements.forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if (rect.top <= window.innerHeight) {
+                    element.classList.add('visible');
+                }
             });
-            cartTotalElement.textContent = cartTotal;
-        }
+        });
+
+        window.onload = () => {
+            document.querySelector('.products-section').classList.add('visible');
+            document.querySelector('.about-us').classList.add('visible');
+            document.querySelector('.contact-us').classList.add('visible');
+        };
     </script>
+
 </body>
 </html>
