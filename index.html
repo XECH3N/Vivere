@@ -8,19 +8,22 @@
     <style>
         /* Global Styles */
         body {
-            font-family: 'Playfair Display', serif; /* Luxury font */
+            font-family: 'Playfair Display', serif;
             color: #333333;
-            line-height: 1.6;
             background-color: #E6E6FA;
-            overflow-x: hidden;
             margin: 0;
         }
 
-        /* Navigation Styles */
+        /* Navigation */
         nav {
             background-color: #333333;
-            padding: 10px;
+            padding: 15px 30px;
             text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -31,18 +34,20 @@
             font-weight: 600;
         }
 
-        nav a:hover {
-            background-color: #A4863D;
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
         }
 
         /* Hero Section */
         .hero {
-            background-image: url('https://via.placeholder.com/1500x1000'); /* Placeholder for hero image */
+            background-image: url('https://via.placeholder.com/1500x1000');
             background-size: cover;
             background-position: center;
             padding: 100px 20px;
             text-align: center;
             color: white;
+            transition: opacity 0.5s ease;
         }
 
         .hero h1 {
@@ -55,69 +60,112 @@
             font-weight: 400;
         }
 
-        /* About Us Section */
-        .about-us {
-            padding: 50px;
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .product {
             background-color: #fff;
-            text-align: center;
-            color: #333333;
-        }
-
-        .about-us h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .about-us p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        /* Contact Us Section */
-        .contact-us {
-            padding: 50px;
-            background-color: #0E300E;
-            color: white;
-            text-align: center;
-        }
-
-        .contact-us h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .contact-us p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333333;
-            color: white;
-            text-align: center;
             padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
         }
 
-        footer a {
-            color: #E6E6FA;
-            text-decoration: none;
-            margin: 0 10px;
+        .product:hover {
+            transform: scale(1.05);
         }
 
-        footer a:hover {
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+
+        .product .price {
+            font-size: 1.4rem;
+            font-weight: 600;
             color: #A4863D;
         }
 
-        /* Utility */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+        .product .add-to-cart {
+            background-color: #333333;
+            color: #E6E6FA;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
         }
 
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
+        .product .add-to-cart:hover {
+            background-color: #A4863D;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .cart-modal-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cart-modal-content #cartItems {
+            margin-bottom: 20px;
+        }
+
+        .cart-modal-content #checkoutBtn {
+            background-color: #A4863D;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cart-modal-content #closeCartBtn {
+            background-color: #333333;
+            color: #E6E6FA;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -125,10 +173,8 @@
 
     <!-- Navigation -->
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Shop</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="#" class="logo">Véracité</a>
+        <a href="#" id="cartIcon">Cart (<span id="cartCount">0</span>)</a>
     </nav>
 
     <!-- Hero Section -->
@@ -137,20 +183,56 @@
         <p>Luxury Eyewear for the Effortless Lifestyle</p>
     </div>
 
-    <!-- About Us Section -->
-    <div class="about-us container">
-        <h2>About Us</h2>
-        <p>Véracité is the embodiment of effortless luxury. We craft eyewear for those who live life with ease, grace, and elegance. Designed for the individual who values sophistication without the need for overt opulence, our sunglasses are the finishing touch to an impeccable lifestyle.</p>
-        <p>Whether you are strolling along a sun-kissed beach or attending an exclusive event, Véracité sunglasses elevate your presence. Our collection features sleek, minimalist designs crafted with high-quality materials to ensure both style and comfort. It’s not just eyewear—it’s a symbol of a carefree, elevated lifestyle.</p>
+    <!-- Product Grid (Placeholders) -->
+    <div class="product-grid">
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 1">
+            <h3>Luxury Sunglasses 1</h3>
+            <p class="price">$500</p>
+            <button class="add-to-cart" data-price="500">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 2">
+            <h3>Luxury Sunglasses 2</h3>
+            <p class="price">$450</p>
+            <button class="add-to-cart" data-price="450">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 3">
+            <h3>Luxury Sunglasses 3</h3>
+            <p class="price">$550</p>
+            <button class="add-to-cart" data-price="550">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 4">
+            <h3>Luxury Sunglasses 4</h3>
+            <p class="price">$600</p>
+            <button class="add-to-cart" data-price="600">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 5">
+            <h3>Luxury Sunglasses 5</h3>
+            <p class="price">$700</p>
+            <button class="add-to-cart" data-price="700">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 6">
+            <h3>Luxury Sunglasses 6</h3>
+            <p class="price">$750</p>
+            <button class="add-to-cart" data-price="750">Add to Cart</button>
+        </div>
     </div>
 
-    <!-- Contact Us Section -->
-    <div class="contact-us container">
-        <h2>Contact Us</h2>
-        <p>If you have any questions, feel free to reach out to us:</p>
-        <p>Email: contact@veracite.com</p>
-        <p>Phone: +1 800 123 4567</p>
-        <p>Address: 123 Luxury Street, Cityville, Country</p>
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-modal-content">
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            <p>Total: $<span id="cartTotal">0</span></p>
+            <p><strong>Shipping:</strong> Free Worldwide Shipping</p>
+            <button id="checkoutBtn">Checkout</button>
+            <button id="closeCartBtn">Close</button>
+        </div>
     </div>
 
     <!-- Footer -->
@@ -160,5 +242,53 @@
         <a href="#">Terms & Conditions</a>
     </footer>
 
+    <script>
+        let cart = [];
+        let cartCount = 0;
+        let cartTotal = 0;
+
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartCountElement = document.getElementById('cartCount');
+        const cartModal = document.getElementById('cartModal');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotalElement = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const price = parseInt(event.target.getAttribute('data-price'));
+                const productName = event.target.parentElement.querySelector('h3').innerText;
+                cart.push({ name: productName, price: price });
+                cartCount++;
+                cartTotal += price;
+                updateCartUI();
+            });
+        });
+
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'flex';
+            updateCartModal();
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        function updateCartUI() {
+            cartCountElement.textContent = cartCount;
+        }
+
+        function updateCartModal() {
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.textContent = `${item.name} - $${item.price}`;
+                cartItems.appendChild(itemDiv);
+            });
+            cartTotalElement.textContent = cartTotal;
+        }
+    </script>
 </body>
 </html>
