@@ -3,211 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Véracité</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Véracité - Luxury Eyewear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Basic Styles */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            height: 100%;
+        /* Global Styles */
+        body {
+            font-family: 'Playfair Display', serif; /* Luxury font */
+            color: #333333;
+            line-height: 1.6;
+            background-color: #E6E6FA;
             overflow-x: hidden;
-            background-color: #F8F8F8;
+            margin: 0;
         }
 
-        /* Water Animation Effect */
-        .water-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('water-animation.gif') no-repeat center center fixed;
-            animation: water 15s linear infinite;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        @keyframes water {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 100%; }
-        }
-
-        /* Navigation Bar */
+        /* Navigation Styles */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 20px 50px;
-            z-index: 1;
+            background-color: #333333;
+            padding: 10px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        nav.sticky {
-            background-color: rgba(0, 0, 0, 0.8);
         }
 
         nav a {
-            color: white;
-            font-size: 18px;
-            margin: 0 20px;
+            color: #E6E6FA;
             text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
             font-weight: 600;
-            transition: color 0.3s ease;
         }
 
         nav a:hover {
-            color: #A9DFBF;
+            background-color: #A4863D;
         }
 
-        /* Header Section */
-        .header {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Hero Section */
+        .hero {
+            background-image: url('https://via.placeholder.com/1500x1000'); /* Placeholder for hero image */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
             text-align: center;
-            color: #fff;
-            background: linear-gradient(to bottom, #A9DFBF, #F8C9B6);
-        }
-
-        .header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 70px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Product Section */
-        .product-section {
-            padding: 50px;
-            text-align: center;
-            background-color: #FFF;
-        }
-
-        .product-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 40px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .product {
-            display: inline-block;
-            margin: 20px;
-            width: 220px;
-            height: 300px;
-            background-color: #E1E1E1;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Footer Section */
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
             color: white;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 50px;
-            }
-
-            nav {
-                padding: 15px 20px;
-            }
-
-            .product {
-                width: 150px;
-                height: 200px;
-            }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 600;
         }
 
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 40px;
-            }
-
-            .product {
-                width: 120px;
-                height: 160px;
-            }
-
-            nav {
-                font-size: 16px;
-                padding: 10px;
-            }
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
         }
 
+        /* About Us Section */
+        .about-us {
+            padding: 50px;
+            background-color: #fff;
+            text-align: center;
+            color: #333333;
+        }
+
+        .about-us h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .about-us p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Contact Us Section */
+        .contact-us {
+            padding: 50px;
+            background-color: #0E300E;
+            color: white;
+            text-align: center;
+        }
+
+        .contact-us h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .contact-us p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: #E6E6FA;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #A4863D;
+        }
+
+        /* Utility */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            font-family: 'Playfair Display', serif;
+        }
     </style>
 </head>
 <body>
-    <!-- Water Animation Effect -->
-    <div class="water-effect"></div>
 
-    <!-- Main Navigation -->
-    <nav id="navbar">
+    <!-- Navigation -->
+    <nav>
         <a href="#">Home</a>
-        <a href="#">Collections</a>
+        <a href="#">Shop</a>
         <a href="#">About Us</a>
-        <a href="#">Contact</a>
+        <a href="#">Contact Us</a>
     </nav>
 
-    <!-- Header Section -->
-    <section class="header">
+    <!-- Hero Section -->
+    <div class="hero">
         <h1>Véracité</h1>
-    </section>
+        <p>Luxury Eyewear for the Effortless Lifestyle</p>
+    </div>
 
-    <!-- Product Section -->
-    <section class="product-section">
-        <h2>Our Collection</h2>
-        <div class="product"><img src="https://via.placeholder.com/220x300" alt="Product 1"></div>
-        <div class="product"><img src="https://via.placeholder.com/220x300" alt="Product 2"></div>
-        <div class="product"><img src="https://via.placeholder.com/220x300" alt="Product 3"></div>
-    </section>
+    <!-- About Us Section -->
+    <div class="about-us container">
+        <h2>About Us</h2>
+        <p>Véracité is the embodiment of effortless luxury. We craft eyewear for those who live life with ease, grace, and elegance. Designed for the individual who values sophistication without the need for overt opulence, our sunglasses are the finishing touch to an impeccable lifestyle.</p>
+        <p>Whether you are strolling along a sun-kissed beach or attending an exclusive event, Véracité sunglasses elevate your presence. Our collection features sleek, minimalist designs crafted with high-quality materials to ensure both style and comfort. It’s not just eyewear—it’s a symbol of a carefree, elevated lifestyle.</p>
+    </div>
 
-    <!-- Footer Section -->
-    <section class="footer">
-        <p>© 2025 Véracité. All Rights Reserved.</p>
-    </section>
+    <!-- Contact Us Section -->
+    <div class="contact-us container">
+        <h2>Contact Us</h2>
+        <p>If you have any questions, feel free to reach out to us:</p>
+        <p>Email: contact@veracite.com</p>
+        <p>Phone: +1 800 123 4567</p>
+        <p>Address: 123 Luxury Street, Cityville, Country</p>
+    </div>
 
-    <script>
-        window.onload = () => {
-            // Fade out water animation after 3 seconds
-            const waterEffect = document.querySelector('.water-effect');
-            setTimeout(() => {
-                waterEffect.style.opacity = 0;
-            }, 3000);
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Véracité. All rights reserved.</p>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms & Conditions</a>
+    </footer>
 
-            // Sticky Navbar functionality
-            const navbar = document.getElementById('navbar');
-            window.onscroll = () => {
-                if (window.pageYOffset > 100) {
-                    navbar.classList.add('sticky');
-                } else {
-                    navbar.classList.remove('sticky');
-                }
-            };
-        };
-    </script>
 </body>
 </html>
