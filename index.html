@@ -3,266 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vivere - Luxury Eyewear</title>
-    <link href="https://fonts.googleapis.com/css2?family=Suisse+Int'l:wght@300;500&display=swap" rel="stylesheet">
+    <title>VIVERE – Luxury Eyewear</title>
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Suisse Int\'l', sans-serif;
+        /* COLORS */
+        :root {
+            --dark-gray: #333333;
+            --gold: #A4863D;
+            --lavender: #E6E6FA;
+            --deep-green: #0E300E;
+        }
+
+        /* GENERAL STYLES */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #E6E6FA;
-            color: #333333;
-            overflow-x: hidden;
+            box-sizing: border-box;
+            font-family: 'Libre Baskerville', serif;
+            scroll-behavior: smooth;
         }
 
-        header {
-            text-align: center;
-            padding: 80px 0;
-            background-color: #A4863D;
-            color: #fff;
-            position: relative;
-            z-index: 10;
-            transform: translateY(0);
-            opacity: 1;
-            transition: transform 1s, opacity 1s;
+        body {
+            background-color: var(--dark-gray);
+            color: var(--gold);
         }
 
-        header h1 {
-            font-size: 60px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        header p {
-            font-size: 24px;
-            font-weight: 300;
-            margin-top: 10px;
-        }
-
-        .products-section {
+        /* NAVIGATION */
+        .navbar {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 40px 5%;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s, transform 1s;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li {
+            display: inline;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* HERO SECTION */
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?luxury,fashion') center/cover;
+            color: var(--lavender);
+        }
+
+        #hero h2 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        #hero p {
+            font-size: 24px;
+        }
+
+        /* SHOP SECTION */
+        #shop {
+            padding: 50px;
+            text-align: center;
+            background: var(--gold);
+            color: var(--dark-gray);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
         }
 
         .product {
-            background: #fff;
-            border-radius: 8px;
-            width: 300px;
-            text-align: center;
-            margin: 15px;
+            background: var(--lavender);
             padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
         }
 
         .product img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 8px;
+            border-radius: 5px;
         }
 
         .product h3 {
-            margin: 15px 0;
-            color: #333;
+            margin: 10px 0;
         }
 
-        .product .price {
+        .product p {
             font-size: 18px;
-            color: #A4863D;
-            font-weight: 500;
+            font-weight: bold;
         }
 
-        .product .add-to-cart {
-            background-color: #A4863D;
-            color: white;
+        .product button {
+            margin-top: 10px;
             padding: 10px 20px;
+            background: var(--deep-green);
+            color: white;
             border: none;
             cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
         }
 
-        .product .add-to-cart:hover {
-            background-color: #0E300E;
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--deep-green);
+            color: white;
         }
 
+        /* PAGE TRANSITIONS */
         .fade-in {
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
 
-        .fade-in.visible {
+        .fade-in.show {
             opacity: 1;
         }
-
-        #cartIcon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #A4863D;
-            color: #fff;
-            padding: 15px 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-
-        .cart-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 20;
-        }
-
-        .cart-modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            max-width: 500px;
-            text-align: center;
-            color: #333;
-        }
-
-        footer {
-            background-color: #333333;
-            color: #E6E6FA;
-            padding: 20px;
-            text-align: center;
-        }
     </style>
+
 </head>
 <body>
 
-    <header>
-        <h1>Vivre, non existere</h1>
-        <p>to live, not just to exist</p>
+    <!-- NAVIGATION -->
+    <header class="navbar">
+        <h1>VIVERE</h1>
+        <nav>
+            <ul>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="products-section fade-in">
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 1">
-            <h3>Luxury Sunglasses 1</h3>
-            <p class="price">$500</p>
-            <button class="add-to-cart" data-price="500">Add to Cart</button>
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <div>
+            <h2>Vivre, non existere</h2>
+            <p>To live, not just to exist</p>
         </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 2">
-            <h3>Luxury Sunglasses 2</h3>
-            <p class="price">$550</p>
-            <button class="add-to-cart" data-price="550">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 3">
-            <h3>Luxury Sunglasses 3</h3>
-            <p class="price">$600</p>
-            <button class="add-to-cart" data-price="600">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 4">
-            <h3>Luxury Sunglasses 4</h3>
-            <p class="price">$700</p>
-            <button class="add-to-cart" data-price="700">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 5">
-            <h3>Luxury Sunglasses 5</h3>
-            <p class="price">$750</p>
-            <button class="add-to-cart" data-price="750">Add to Cart</button>
-        </div>
-        <div class="product">
-            <img src="https://via.placeholder.com/300" alt="Luxury Sunglasses 6">
-            <h3>Luxury Sunglasses 6</h3>
-            <p class="price">$800</p>
-            <button class="add-to-cart" data-price="800">Add to Cart</button>
-        </div>
-    </div>
+    </section>
 
-    <div id="about-us" class="about-us fade-in">
-        <h2>About Us</h2>
-        <p>Vivere is a luxury eyewear brand that embodies effortless elegance and refined craftsmanship. We create high-quality sunglasses for individuals who are not only passionate about style but also value authenticity. Each pair is made from the finest materials, ensuring a perfect balance of durability and luxury. At Vivere, we don’t just create eyewear—we craft timeless pieces for those who understand that true luxury is lived, not just worn.</p>
-    </div>
+    <!-- SHOP SECTION -->
+    <section id="shop">
+        <h2>Shop Luxury Eyewear</h2>
+        <div class="products">
+            <div class="product">
+                <img src="https://source.unsplash.com/400x300/?sunglasses" alt="Luxury Sunglasses">
+                <h3>Vivere Classic</h3>
+                <p>$590</p>
+                <button onclick="addToCart('Vivere Classic', 590)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://source.unsplash.com/400x300/?glasses" alt="Luxury Sunglasses">
+                <h3>Vivere Elite</h3>
+                <p>$750</p>
+                <button onclick="addToCart('Vivere Elite', 750)">Add to Cart</button>
+            </div>
+            <!-- ADD 4 MORE PRODUCTS HERE -->
+        </div>
+    </section>
 
-    <div id="contact-us" class="contact-us fade-in">
+    <!-- ABOUT US SECTION -->
+    <section id="about" class="fade-in">
+        <h2>About Vivere</h2>
+        <p>Vivere is more than just eyewear—it is an expression of effortless luxury. Designed for those who embrace sophistication...</p>
+    </section>
+
+    <!-- CONTACT US SECTION -->
+    <section id="contact" class="fade-in">
         <h2>Contact Us</h2>
-        <p>For inquiries, please email us at <strong>info@vivere.com</strong> or call <strong>(123) 456-7890</strong>.</p>
-    </div>
+        <p>Email: support@vivere.com</p>
+        <p>Phone: +27 123 456 789</p>
+    </section>
 
+    <!-- SHOPPING CART SECTION -->
+    <section id="cart" class="fade-in">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="cart-total">0</span></p>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 Vivere. All rights reserved.</p>
+        <p>© 2025 Vivere. All Rights Reserved.</p>
     </footer>
 
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-modal-content">
-            <h3>Your Cart</h3>
-            <p id="cartContents">No items in cart</p>
-            <button id="checkoutBtn">Proceed to Checkout</button>
-        </div>
-    </div>
-
-    <div id="cartIcon">
-        Cart <span id="cartCount">0</span>
-    </div>
-
     <script>
-        let cart = [];
-        const cartModal = document.getElementById('cartModal');
-        const cartIcon = document.getElementById('cartIcon');
-        const cartCount = document.getElementById('cartCount');
-        const addToCartBtns = document.querySelectorAll('.add-to-cart');
-        const cartContents = document.getElementById('cartContents');
-
-        addToCartBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const productName = e.target.previousElementSibling.previousElementSibling.textContent;
-                const price = parseInt(e.target.dataset.price);
-                cart.push({ productName, price });
-                updateCart();
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".fade-in").forEach(section => {
+                section.classList.add("show");
             });
         });
 
-        cartIcon.addEventListener('click', () => {
-            cartModal.style.display = 'flex';
-        });
-
-        document.getElementById('checkoutBtn').addEventListener('click', () => {
-            alert('Proceeding to checkout');
-            cart = [];
+        let cart = [];
+        function addToCart(product, price) {
+            cart.push({ product, price });
             updateCart();
-            cartModal.style.display = 'none';
-        });
-
-        function updateCart() {
-            const cartSummary = cart.map(item => `<p>${item.productName} - $${item.price}</p>`).join('');
-            cartContents.innerHTML = cartSummary ? cartSummary : 'No items in cart';
-            cartCount.textContent = cart.length;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelector('.fade-in').classList.add('visible');
-            }, 100);
-        });
+        function updateCart() {
+            document.getElementById("cart-count").innerText = cart.length;
+            let cartList = document.getElementById("cart-items");
+            let total = 0;
+            cartList.innerHTML = "";
+            cart.forEach(item => {
+                let li = document.createElement("li");
+                li.innerText = `${item.product} - $${item.price}`;
+                cartList.appendChild(li);
+                total += item.price;
+            });
+            document.getElementById("cart-total").innerText = total;
+        }
     </script>
 
 </body>
 </html>
+
